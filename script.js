@@ -16,7 +16,7 @@ Tom needs some help to automatically take a sentence and maximally reduce its le
 replacing word segments with emojis.
 
 input: 
-string of length n, 1 <= n <= 200
+string of length n, 1 <= n <= 200,000
 m lines of input where
     k keywords emoji
     k - number of keywords that follow
@@ -92,7 +92,8 @@ function convertToEmojis(s) {
         let j = i;
         let emojiIndex = j;
         while (curNode != null && j < s.length) {
-            curNode = curNode.children[s[j]];
+            char = s[j].toLowerCase();
+            curNode = curNode.children[char];
             if (curNode != null && curNode.emoji != null) {
                 curEmoji = curNode.emoji;
                 emojiIndex = j;
@@ -113,6 +114,14 @@ function convertToEmojis(s) {
 
 const input = document.getElementById("input");
 const output = document.getElementById("output");
+const impP = document.getElementById("improvement");
 input.addEventListener('input', () => {
-    output.innerHTML = convertToEmojis(input.value);
+    let converted = convertToEmojis(input.value);
+    const convertedLength = [...converted].length;
+    converted = converted.replaceAll('\n', '<br/>')
+    output.innerHTML = converted;
+
+    const originalLength = [...input.value].length;
+    const improvement = originalLength - convertedLength;
+    impP.innerHTML = "Original length: " + originalLength + ", output length: " + convertedLength + ", improvement: -" + improvement + " characters."; 
 })

@@ -26,15 +26,32 @@ textarea {
 
 .io {
     border-radius: 5px;
-    padding: 10px;
+    padding: 20px;
     background-color: #313;
-    width: 300px;
-    height: 200px;
+    width: 400px;
+    height: 500px;
     margin-inline: 20px;
     overflow-y: scroll;
 
     font-family: serif;
-    font-size: 18px;
-    line-height: 1.4rem;
+    font-size: 26px;
+    line-height: 2rem;
 }
 
+#improvement {
+    text-align: center;
+    color: #eee;
+    font-family: serif;
+}
+
+@media (max-width: 600px) {
+    .io {
+        width: 80%;
+        height: 200px;
+        font-size: 20px;
+    }
+
+    div#row {
+        flex-direction: column;
+    }
+}
